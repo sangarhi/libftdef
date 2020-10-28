@@ -10,53 +10,48 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-static int		count_splits(char const *s, char c)
+static int		ft_div_counter(char const *s, char c)
 {
 	int i;
-	int count;
+	int counter;
 
+	counter = 0;
+	if (s[0] && s[0] != c)
+		counter++;
 	i = 0;
-	count = 0;
-	if (s[i] && s[i] == !c)
-		count++;
-
-	while (s[i])
+	while (i < (int)ft_strlen(s))
 	{
 		if (s[i] == c && s[i + 1] != c && s[i + 1])
-			count++;
+			counter++;
 		i++;
 	}
-
-	return (count);
+	return (counter);
 }
 
-static char		*malloc_split(char const *s, char c)
+static char		*ft_segmentator(char const *s, char c, int i)
 {
-	char	*str;
-	int		i;
+	int		j;
+	int		k;
+	char	*resultant_string;
 
-	i = 0;
+	j = i;
 	while (s[i] && s[i] != c)
 		i++;
-
-	str = (char *)malloc(sizeof(char) * (i + 1));
-	if (!str)
+	resultant_string = (char *)malloc(sizeof(char) * ((i - j) + 1));
+	if (!resultant_string)
 		return (NULL);
-
-	i = 0;
-	while (s[i] && s[i] != c)
+	k = 0;
+	while (j != i)
 	{
-		str[i] = s[i];
-		i++;
+		resultant_string[k] = s[j];
+		k++;
+		j++;
 	}
-
-	str[i] = '\0';
-	return (str);
+	resultant_string[k] = '\0';
+	return (resultant_string);
 }
 
-char		**ft_split(char const *s, char c)
+char			**ft_split(char const *s, char c)
 {
 	char	**array;
 	int		i;
@@ -64,32 +59,22 @@ char		**ft_split(char const *s, char c)
 
 	if (!s)
 		return (NULL);
-	array = (char **)malloc(sizeof(char *) * (count_splits(s, c) + 1));
+	array = (char **)malloc(sizeof(char *) * (ft_div_counter(s, c) + 1));
 	if (!array)
 		return (NULL);
-
 	i = 0;
 	j = 0;
-	while (s[i])
+	while (i <= (int)ft_strlen(s) && ft_div_counter(s, c))
 	{
-		while (s[i] && s[i] == c)
-			i++;
-		if (s[i] && s[i] != c)
+		if (ft_strlen(ft_segmentator(s, c, i)))
 		{
-			array[j] = malloc_split((s + i), c);
-			i += (ft_strlen(array[j]));
+			array[j] = ft_segmentator(s, c, i);
+			i += (ft_strlen(array[j]) + 1);
 			j++;
 		}
+		else
+			i++;
 	}
-	array[j] = "\0";
+	array[j] = NULL;
 	return (array);
-}
-
-
-int main(void) {
-	char *s = "Hola, esta función es una mierda";
-	char **sp = ft_split(s, ' ');
-	for (int i = 0; sp[i]; ++i) {
-		printf("sp[%d]:%s \n", i, sp[i]);
-	}
 }
