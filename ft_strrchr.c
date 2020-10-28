@@ -23,14 +23,3 @@ char	*ft_strrchr(const char *str, int c)
 		return ((char *)str + i);
 	return (NULL);
 }
-
-int		main()
-{
-	char *src = "the cake is a lie !\0I'm hidden lol\r\n";
-	char *src2 = "the cake is a lie !\0I'm hidden lol\r\n";
-
-	printf( "s=%s\n", ft_strrchr(src, ' ') );
-	printf( "s=%s\n", strrchr(src2, ' ') );
-
-	return (0);
-}
