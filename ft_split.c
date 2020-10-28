@@ -81,7 +81,7 @@ char		**ft_split(char const *s, char c)
 			j++;
 		}
 	}
-	array[j] = '\0';
+	array[j] = "\0";
 	return (array);
 }
 
