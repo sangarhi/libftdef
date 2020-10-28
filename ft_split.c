@@ -6,9 +6,10 @@
 /*   By: sagarcia <sagarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/26 19:29:12 by sagarcia          #+#    #+#             */
-/*   Updated: 2020/10/28 17:37:14 by sagarcia         ###   ########.fr       */
+/*   Updated: 2020/10/28 21:31:50 by sagarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "libft.h"
 
 static int		ft_count_splits(char const *s, char c)

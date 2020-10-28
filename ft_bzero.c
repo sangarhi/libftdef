@@ -6,7 +6,7 @@
 /*   By: sagarcia <sagarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/26 18:59:25 by sagarcia          #+#    #+#             */
-/*   Updated: 2020/10/26 23:56:19 by sandra           ###   ########.fr       */
+/*   Updated: 2020/10/28 21:25:56 by sagarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 void	ft_bzero(void *s, size_t n)
 {
-    size_t i;
+	size_t	i;
 
-    i = 0;
+	i = 0;
 	while (i < n)
-    {
+	{
 		((unsigned char *)s)[i++] = '\0';
-    }
+	}
 }

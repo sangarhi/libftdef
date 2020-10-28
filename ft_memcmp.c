@@ -6,7 +6,7 @@
 /*   By: sagarcia <sagarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/26 19:18:58 by sagarcia          #+#    #+#             */
-/*   Updated: 2020/10/26 20:13:39 by sagarcia         ###   ########.fr       */
+/*   Updated: 2020/10/28 21:27:13 by sagarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ int	ft_memcmp(const void *str1, const void *str2, size_t n)
 	i = 0;
 	s1 = ((unsigned char *)str1);
 	s2 = ((unsigned char *)str2);
-
 	while (i < n)
 	{
 		if (s1[i] != s2[i])

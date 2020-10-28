@@ -6,7 +6,7 @@
 /*   By: sagarcia <sagarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/26 19:44:39 by sagarcia          #+#    #+#             */
-/*   Updated: 2020/10/27 00:38:01 by sandra           ###   ########.fr       */
+/*   Updated: 2020/10/28 21:13:20 by sagarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 char	*ft_strnstr(const char *str, const char *to_find, size_t len)
 {
-	size_t  i;
-	size_t  j;
+	size_t	i;
+	size_t	j;
 
 	i = 0;
 	if (to_find[i] == '\0')
@@ -31,5 +31,5 @@ char	*ft_strnstr(const char *str, const char *to_find, size_t len)
 		}
 		i++;
 	}
-    return (0);
+	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: sagarcia <sagarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/26 19:37:33 by sagarcia          #+#    #+#             */
-/*   Updated: 2020/10/27 13:25:37 by sandra           ###   ########.fr       */
+/*   Updated: 2020/10/28 21:31:32 by sagarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,6 @@ size_t		ft_strlcat(char *dst, const char *src, size_t dstsize)
 		j++;
 	}
 	if (i < dstsize)
-		dst[i + j] = '\0';	
+		dst[i + j] = '\0';
 	return (i + ft_strlen(src));
 }
