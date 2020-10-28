@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 #include "libft.h"
 
-static int		ft_div_counter(char const *s, char c)
+static int		ft_count_splits(char const *s, char c)
 {
 	int i;
 	int counter;
@@ -29,7 +29,7 @@ static int		ft_div_counter(char const *s, char c)
 	return (counter);
 }
 
-static char		*ft_segmentator(char const *s, char c, int i)
+static char		*ft_malloc_split(char const *s, char c, int i)
 {
 	int		j;
 	int		k;
@@ -60,16 +60,16 @@ char			**ft_split(char const *s, char c)
 
 	if (!s)
 		return (NULL);
-	array = (char **)malloc(sizeof(char *) * (ft_div_counter(s, c) + 1));
+	array = (char **)malloc(sizeof(char *) * (ft_count_splits(s, c) + 1));
 	if (!array)
 		return (NULL);
 	i = 0;
 	j = 0;
-	while (i <= (int)ft_strlen(s) && ft_div_counter(s, c))
+	while (i <= (int)ft_strlen(s) && ft_count_splits(s, c))
 	{
-		if (ft_strlen(ft_segmentator(s, c, i)))
+		if (ft_strlen(ft_malloc_split(s, c, i)))
 		{
-			array[j] = ft_segmentator(s, c, i);
+			array[j] = ft_malloc_split(s, c, i);
 			i += (ft_strlen(array[j]) + 1);
 			j++;
 		}
