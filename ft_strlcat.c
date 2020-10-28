@@ -19,20 +19,14 @@ size_t		ft_strlcat(char *dst, const char *src, size_t dstsize)
 
 	i = 0;
 	j = 0;
-	while (dst[i])
+	while (dst[i] != '\0' && i < dstsize)
 		i++;
-	if (dstsize)
+	while ((i + j) < (dstsize - 1) && src[j])
 	{
-		while ((i + j) < (dstsize - 1) && src[j])
-		{
-			dst[i + j] = src[j];
-			j++;
-		}
-		dst[i + j] = '\0';
-	}
-	while (src[j])
+		dst[i + j] = src[j];
 		j++;
+	}
 	if (i < dstsize)
-		return (i + j);
-	return (dstsize + j);
+		dst[i + j] = '\0';	
+	return (i + ft_strlen(src));
 }

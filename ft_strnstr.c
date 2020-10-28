@@ -19,15 +19,13 @@ char	*ft_strnstr(const char *str, const char *to_find, size_t len)
 
 	i = 0;
 	if (to_find[i] == '\0')
-	{
 		return ((char *)str);
-	}
-	while (str[i])
+	while (str[i] && i < len)
 	{
 		j = 0;
-		while (str[i + j] == to_find[j] && i + j > len)
+		while (to_find[j] && str[i + j] == to_find[j] && (i + j) < len)
 		{
-			if (to_find[j + 1] != '\0')
+			if (to_find[j + 1] == '\0')
 				return ((char *)&str[i]);
 			j++;
 		}
