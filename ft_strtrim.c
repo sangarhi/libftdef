@@ -6,13 +6,13 @@
 /*   By: sagarcia <sagarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/26 19:48:38 by sagarcia          #+#    #+#             */
-/*   Updated: 2020/10/26 20:23:24 by sagarcia         ###   ########.fr       */
+/*   Updated: 2020/10/29 01:47:17 by sagarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	get_start(char const *s1, char const *set, size_t len)
+static size_t	get_start(char const *s1, char const *set, size_t len)
 {
 	size_t i;
 
@@ -22,7 +22,7 @@ size_t	get_start(char const *s1, char const *set, size_t len)
 	return (i);
 }
 
-size_t	get_end(char const *s1, char const *set, size_t len)
+static size_t	get_end(char const *s1, char const *set, size_t len)
 {
 	size_t i;
 
@@ -32,7 +32,7 @@ size_t	get_end(char const *s1, char const *set, size_t len)
 	return (len - i);
 }
 
-char	*ft_strtrim(char const *s1, char const *set)
+char			*ft_strtrim(char const *s1, char const *set)
 {
 	int		start;
 	int		end;
