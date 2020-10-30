@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: sandra <marvin@42.fr>                      +#+  +:+       +#+         #
+#    By: sagarcia <sagarcia@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2020/10/26 23:03:32 by sandra            #+#    #+#              #
-#    Updated: 2020/10/26 23:03:50 by sandra           ###   ########.fr        #
+#    Created: 2020/10/30 02:23:28 by sagarcia          #+#    #+#              #
+#    Updated: 2020/10/30 02:27:28 by sagarcia         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,19 +48,7 @@ SRCS_MAND	=	ft_memset.c		\
 				ft_putendl_fd.c	\
 				ft_putnbr_fd.c	
 
-SRCS_BON	=	ft_lstnew.c			\
-		  		ft_lstadd_front.c	\
-		  		ft_lstsize.c		\
-		  		ft_lstlast.c		\
-				ft_lstadd_back.c	\
-				ft_lstdelone.c		\
-				ft_lstclear.c		\
-				ft_lstiter.c		\
-				ft_lstmap.c
-
 OBJS_MAND	= ${SRCS_MAND:.c=.o}
-
-OBJS_BON	= ${SRCS_BON:.c=.o}
 
 CC		= cc
 
@@ -75,33 +63,21 @@ CFLAGS += -Wall -Werror -Wextra -g
 LFLAGS += -I.
 
 all	:	$(NAME)
-		@echo Compiling Library "libft.a" File "Only Mandatory Part": $@ ...
 
 $(NAME)	:	$(OBJS_MAND)
-		@echo Compiling Library File: $@ ...
 		$(AR) $(NAME) $(OBJS_MAND)
 		$(RANLIB) $(NAME)
 
 %.o:	%.c
-		@echo Compiling Binary Files: $@ ...
 		$(CC) $(CFLAGS) -c $< -o $@ $(LFLAGS)
 
-bonus	:	$(OBJS_MAND) $(OBJS_BON) libft.h
-		$(AR) $(NAME) $(OBJS_BON) $(OBJS_MAND)
-		@echo Compiling Library "libft.a" File "Mandatory + Bonus Part": $@ ...
-
 clean	:	
-		@echo Cleaning The .o Generated Files: $@ ...
-		$(RM) ${OBJS_MAND} ${OBJS_BON}
-
+		$(RM) ${OBJS_MAND}
 
 fclean	:	clean
-		@echo Cleaning All ".o & libft.a" Generated Files:
 		$(RM) $(NAME)
 
 re	:	fclean all
-		@echo Cleaning All ".o & libft.a" Generated Files And Remake Everything:
-
 
 .PHONY:		all clean fclean re bonus
 

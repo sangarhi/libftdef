@@ -6,77 +6,95 @@
 /*   By: sagarcia <sagarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/26 19:29:12 by sagarcia          #+#    #+#             */
-/*   Updated: 2020/10/28 21:31:50 by sagarcia         ###   ########.fr       */
+/*   Updated: 2020/10/30 02:20:48 by sandra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int		ft_count_splits(char const *s, char c)
+static int		strs_len(char const *s, char c)
 {
 	int i;
-	int counter;
+	int n;
 
-	counter = 0;
-	if (s[0] && s[0] != c)
-		counter++;
 	i = 0;
-	while (i < (int)ft_strlen(s))
+	n = 1;
+	while (s[i])
 	{
-		if (s[i] == c && s[i + 1] != c && s[i + 1])
-			counter++;
-		i++;
+		while (s[i] == c && s[i])
+			i++;
+		if (i > 0 && s[i] && s[i - 1] == c)
+			n++;
+		if (s[i])
+			i++;
 	}
-	return (counter);
+	if (i > 0 && n == 1 && s[i - 1] == c)
+		return (n);
+	if (s[0] != c)
+		n++;
+	return (n);
 }
 
-static char		*ft_malloc_split(char const *s, char c, int i)
+static int		s_len(char const *s, char c)
 {
-	int		j;
-	int		k;
-	char	*resultant_string;
+	int	i;
+	int	n;
 
-	j = i;
-	while (s[i] && s[i] != c)
-		i++;
-	resultant_string = (char *)malloc(sizeof(char) * ((i - j) + 1));
-	if (!resultant_string)
-		return (NULL);
-	k = 0;
-	while (j != i)
+	i = 0;
+	n = 1;
+	while (s[i] != c && s[i])
 	{
-		resultant_string[k] = s[j];
-		k++;
-		j++;
+		i++;
+		n++;
 	}
-	resultant_string[k] = '\0';
-	return (resultant_string);
+	return (n);
+}
+
+static int		fill_it(char **strs, char const *s, char c, int ls)
+{
+	int	i;
+	int	j;
+	int k;
+	int slen;
+
+	i = 0;
+	k = 0;
+	while (i < ls - 1)
+	{
+		j = 0;
+		while (s[k] == c && s[k])
+			k++;
+		slen = s_len(&s[k], c);
+		if (!(strs[i] = malloc(sizeof(char) * slen)))
+			return (0);
+		while (j + 1 < slen)
+			strs[i][j++] = s[k++];
+		strs[i][j] = '\0';
+		i++;
+	}
+	return (1);
 }
 
 char			**ft_split(char const *s, char c)
 {
-	char	**array;
-	int		i;
-	int		j;
+	int		ls;
+	char	**strs;
 
-	if (!s)
-		return (NULL);
-	array = (char **)malloc(sizeof(char *) * (ft_count_splits(s, c) + 1));
-	if (!array)
-		return (NULL);
-	i = 0;
-	j = 0;
-	while (i <= (int)ft_strlen(s) && ft_count_splits(s, c))
+	if (!s || !*s)
 	{
-		if (ft_strlen(ft_malloc_split(s, c, i)))
-		{
-			array[j] = ft_malloc_split(s, c, i);
-			i += (ft_strlen(array[j]) + 1);
-			j++;
-		}
-		else
-			i++;
+		if (!(strs = malloc(sizeof(char *))))
+			return (NULL);
+		*strs = 0;
+		return (strs);
 	}
-	array[j] = NULL;
-	return (array);
+	ls = strs_len(s, c);
+	if (!(strs = malloc(sizeof(char *) * ls)))
+		return (NULL);
+	if (!fill_it(strs, s, c, ls))
+	{
+		free(strs);
+		return (NULL);
+	}
+	strs[ls - 1] = 0;
+	return (strs);
 }
